@@ -1,0 +1,55 @@
+Toolbar : .//*[@id='toolbar']//tr/td//a(except PageValuesTextBox) toolbarframe
+MRF412
+http://148.173.174.122:8900/acadmin/?serverURL=http://wpqwa551:8000
+kgoutham / kgoutham
+ReportId : .//*[contains(@class,'C222')]/nobr
+ReportIdVal : .//*[contains(@class,'C425')]/nobr
+Period : .//*[contains(@class,'C369')]/nobr
+PeriodVal1 : .//*[contains(@class,'C300')]/nobr
+to : .//*[contains(@class,'C367')]/nobr
+PeriodVal2: .//*[contains(@class,'C301')]/nobr
+MR Payment Report Name : .//*[contains(@class,'C426')]/nobr
+MarketText : .//*[contains(@class,'C225')]/nobr
+MarketVal : .//*[contains(@class,'C427')]/nobr
+ProcessDateVal : .//*[contains(@class,'C237')]/nobr
+ProcessDateText : .//*[contains(@class,'C228')]/nobr
+BussinessDateText : .//*[contains(@class,'C227')]/nobr
+BussinessdateVal : .//*[contains(@class,'C220')]/nobr
+BussinessdateVal1 : .//*[contains(@class,'C220')]/nobr
+PageText : .//*[contains(@class,'C226')]/nobr
+MemberShipRewardsInterText : .//*[contains(@class,'C368')]/nobr
+PageVal2 : .//*[contains(@class,'C234')]/nobr
+of : .//*[contains(@class,'C233')]/nobr
+PageVal1  : .//*[contains(@class,'C235')]/nobr
+AmericanExpressText : .//*[contains(@class,'C413')]/nobr
+DetailsByPartnerInv : .//*[contains(@class,'C389')]/nobr
+PaymentMethodText : .//*[contains(@class,'C401')]/nobr,.//*[contains(@class,'C390')]//div/nobr
+PaymentMethodVal : .//*[contains(@class,'C404')]/nobr,.//*[contains(@class,'C390')]//div/nobr
+HeaderFirstPage : .//*[contains(@class,'C390')]//div/nobr
+PartnerNameVal : .//*[contains(@class,'C311')]//nobr
+sub-TotalText : .//*[contains(@class,'C430')]//nobr
+PartnerInvVal1 : .//*[contains(@class,'C306')]//nobr
+PartnerInvVal2 : .//*[contains(@class,'C307')]//nobr
+TotalPaymentVal : .//*[contains(@class,'C316')]//nobr
+SENumberVal  : .//*[contains(@class,'C314')]/nobr
+PayMarketVal : .//*[contains(@class,'C312')]/nobr
+payUnitVal : .//*[contains(@class,'C313')]/nobr
+LiabilityUnitVal : .//*[contains(@class,'C309')]/nobr
+LiabilityCurrVal : .//*[contains(@class,'C308')]/nobr
+MarketCostVal : .//*[contains(@class,'C310')]/nobr
+SubTotalMarketCostVal : .//*[contains(@class,'C432')]/nobr
+SubTotDiffVal : .//*[contains(@class,'C429')]/nobr
+InvReleaseDateVal : .//*[contains(@class,'C304')]/nobr
+UserIdVal : .//*[contains(@class,'C317')]//span
+TierCatVal : .//*[contains(@class,'C315')]
+FooterFirstPage : .//*[contains(@class,'C420')]//div/nobr
+LastPage-2_TotalAllPartners : .//*[contains(@class,'C380')]//nobr
+LastPage-2_Table : .//*[contains(@class,'C373')]//nobr
+LastPage-1_InterCompany : .//*[contains(@class,'C347')]//nobr
+LastPage-1_table : .//*[contains(@class,'C218')]//nobr
+LastPage_SummaryByTierCat : .//*[contains(@class,'C291')]//nobr
+LastPage_Table : .//*[contains(@class,'C218')]//nobr
+LastPage_PayMethod_manual : .//*[contains(@class,'C286')]//nobr
+LastPage_Sub_Manual_Val : .//*[contains(@class,'C275')]//nobr
+LastPage_Footer : .//*[contains(@class,'C265')]//nobr
+

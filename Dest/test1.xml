@@ -1,0 +1,11 @@
+<myroot>
+<mychild id="456">
+<fruit>banana</fruit>
+<comment>This will be removed</comment>
+</mychild>
+<mychild id="123">
+<comment>This is a comment</comment>
+<test question="answers" hello="world" brackets="angled"/>
+<fruit>apple</fruit>
+</mychild>
+</myroot>

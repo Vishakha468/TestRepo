@@ -1,0 +1,382 @@
+public void completeReportComparisonMRF3031() throws Exception 
+	{
+Thread.sleep(1000);
+int flagPrepg,flagPostPg;
+flagPrepg = 0;
+flagPostPg = 0;
+//String TC_ID = dataTable.getData("General_Data", "TC_ID");
+		String PreURL = dataTable.getData("General_Data", "PreURL");
+		driver.get(PreURL);
+		tObj.getNewUserIdTextBox().clear();
+		tObj.getNewUserIdTextBox().sendKeys(dataTable.getData("General_Data", "UserId"));
+		tObj.getNewPasswordTextBox().sendKeys(dataTable.getData("General_Data", "Password"));
+		tObj.getNewLoginButton().click();
+
+int l;
+		HashMap<Integer, HashMap<Integer, ArrayList<String>>> pre_reportData = new HashMap<Integer, HashMap<Integer, ArrayList<String>>>();
+		HashMap<Integer, HashMap<Integer, ArrayList<String>>> post_Pages_Data = new HashMap<Integer, HashMap<Integer, ArrayList<String>>>();
+
+		try 
+		{
+			Thread.sleep(1000);
+			WebElement folderFrame1 = null;
+			if (driver.getTitle().contains("Information Console")) 
+			{
+				String[] foldersName = dataTable.getData("General_Data", "PreReportFolderName").split(";");
+				int LengthFolder = foldersName.length;
+				for (int folderLoop = 0; folderLoop < foldersName.length - 1; folderLoop++)
+				{
+				folderFrame1 = driver.findElement(By.xpath("//frame[@name='main']"));
+					driver.switchTo().frame(folderFrame1);
+					
+					if (waitForElement(driver, By.linkText(foldersName[folderLoop]), 100)) 
+					{
+						driver.findElement(By.linkText(foldersName[folderLoop])).click();
+						report.updateTestLog("Report Navigation", "Navigation to this folder" + foldersName[folderLoop] + "is PASSED", Status.PASS);
+
+					} else 
+					{
+						report.updateTestLog("Report Navigation", "Navigation to this folder" + foldersName[folderLoop] + "is failed", Status.FAIL);
+					}
+					driver.switchTo().defaultContent();
+				}
+				folderFrame1 = driver.findElement(By.xpath("//frame[@name='main']"));
+				driver.switchTo().frame(folderFrame1);
+				Thread.sleep(4000);
+				driver.findElement(By.partialLinkText(foldersName[(LengthFolder-1)])).click();
+				driver.switchTo().defaultContent();
+				folderFrame1 = driver.findElement(By.xpath("//frame[@name='main']"));
+				driver.switchTo().frame(folderFrame1);
+				String reportName = dataTable.getData("General_Data", "ReportName");
+				waitForElement(driver, By.id("toolbarframe"), 100);
+					driver.switchTo().frame(driver.findElement(By.id("toolbarframe")));
+					String no_Of_Pages = driver.findElement(By.xpath("//input[@name='editThis']/parent::td/following-sibling::td/font")).getText().trim();
+					no_Of_Pages = no_Of_Pages.substring(3, no_Of_Pages.length());
+					
+					int no_OfPages = Integer.parseInt(no_Of_Pages);
+					
+					driver.switchTo().defaultContent();
+					ArrayList<WebElement> no_of_rows = new ArrayList<WebElement>();
+					
+					no_of_rows = (ArrayList<WebElement>) driver.findElements(By.xpath("//body[@onunload='onUnload()']/div/div/div"));
+					HashMap<Integer, ArrayList<String>> table_data = null;
+					
+					
+					ArrayList<WebElement> column_Values_Properties = new ArrayList<WebElement>();
+				//	table_data = new HashMap<Integer, ArrayList<String>>();
+					ArrayList<WebElement> column_Values_Elements = new ArrayList<WebElement>();
+					ArrayList<String> column_Values = new ArrayList<String>();
+					
+					String dynaXpath;
+			//	for (int l = 1; l <= 2; l++)
+					
+					for (l = 1; l <= no_OfPages; l++)
+					{
+					
+						if(l<no_OfPages)
+						{
+							folderFrame1 = driver.findElement(By.xpath("//frame[@name='main']"));
+							driver.switchTo().frame(folderFrame1);
+							driver.switchTo().frame(driver.findElement(By.id("reportframe")));
+							//strHeaderVal = null;
+							no_of_rows = (ArrayList<WebElement>) driver.findElements(By.xpath("//body[@onunload='onUnload()']/div/div/div"));
+							table_data = new HashMap<Integer, ArrayList<String>>();
+						System.out.println("No. of rows for page " +l+ "are :" +no_of_rows);
+						
+							for (int i = 2; i <= no_of_rows.size(); i++)
+							{
+								if(i==(no_of_rows.size()-3))
+								{
+									table_data.put(i, null);
+								}
+								else
+								{
+								dynaXpath = "(//body[@onunload='onUnload()']/div/div/div)[" + i + "]//nobr"; //MRF303_Report
+								
+						///	dynaXpath = "//body[@onunload='onUnload()']/div/div/div[" + i + "]/*/nobr";
+								
+								column_Values_Properties = (ArrayList<WebElement>) driver.findElements(By.xpath(dynaXpath));
+								
+								if (column_Values_Properties.size() > 0)
+								{
+									for (int j = 0; j < column_Values_Properties.size(); j++)
+									{
+										column_Values.add(j, column_Values_Properties.get(j).getText());
+									}
+								}
+
+								table_data.put(i, column_Values);
+								}
+
+							}
+							System.out.println("Value of table data is:" +table_data);
+							pre_reportData.put(l, table_data);
+							
+						/*	if(l<=3||l>no_OfPages-3)
+							{
+								report.updateTestLog("Pre Report"+reportName, "Page No" +l, Status.PASS);
+							}*/
+							
+						//	page.add(strHeaderVal);
+							driver.switchTo().defaultContent();
+							folderFrame1 = driver.findElement(By.xpath("//frame[@name='main']"));
+							driver.switchTo().frame(folderFrame1);
+							driver.switchTo().frame(driver.findElement(By.id("toolbarframe")));
+							driver.findElement(By.linkText("Next")).click();
+							driver.switchTo().defaultContent();
+							flagPrepg =0;
+						}												
+													
+						if(l==no_OfPages)
+						{
+						
+					folderFrame1 = driver.findElement(By.xpath("//frame[@name='main']"));
+					driver.switchTo().frame(folderFrame1);
+					driver.switchTo().frame(driver.findElement(By.id("reportframe")));
+						System.out.println("In last Page");
+							
+						no_of_rows = (ArrayList<WebElement>) driver.findElements(By.xpath("//body[@onunload='onUnload()']/div/div/div"));
+						
+						
+						for (int i = 2; i <= no_of_rows.size()-1; i++)
+						{
+							//dynaXpath = "(//body[@onunload='onUnload()']/div/div/div)[" + i + "]//nobr"; //MRF303_Report
+						dynaXpath = "//body[@onunload='onUnload()']/div/div/div[" + i + "]//nobr";
+							column_Values_Properties = (ArrayList<WebElement>) driver.findElements(By.xpath(dynaXpath));
+						
+							if (column_Values_Properties.size() > 0)
+							{
+								for (int j = 0; j < column_Values_Properties.size(); j++)
+								{
+									column_Values.add(j, column_Values_Properties.get(j).getText());
+								}
+							}
+
+							table_data.put(i, column_Values);
+
+						}
+						pre_reportData.put(l, table_data);
+						
+						flagPrepg =1;
+						if(flagPrepg == 0)
+						{
+							report.updateTestLog("Pre Report"+reportName, "Data is not been stored from Page No" +l , Status.FAIL);
+						}
+						
+						if(l<=3||l>no_OfPages-3)
+						{
+							report.updateTestLog("Pre Report"+reportName, "Page No" +l, Status.PASS);
+						}
+				//		page.add(strHeaderVal);
+						driver.switchTo().defaultContent();
+						folderFrame1 = driver.findElement(By.xpath("//frame[@name='main']"));
+						driver.switchTo().frame(folderFrame1);
+						driver.switchTo().frame(driver.findElement(By.id("toolbarframe")));
+						driver.findElement(By.linkText("Next")).click();
+						driver.switchTo().defaultContent();
+						flagPrepg =0;
+					}
+			}
+				//	pages.add(page);
+					
+			}
+			else
+			{
+				report.updateTestLog("Prereport Folders", "Pre Report folders pages is not opened", Status.FAIL);
+			}
+			
+		}
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+		
+		System.out.println("pre data before is :  " +pre_reportData);
+		
+		String PostURL = dataTable.getData("General_Data", "PostURL");
+		driver.get(PostURL);
+
+		tObj.getPostUserIdTextBox().clear();
+
+		tObj.getPostUserIdTextBox().sendKeys(dataTable.getData("General_Data", "UserId"));
+		tObj.getPostPasswordTextBox().sendKeys(dataTable.getData("General_Data", "Password"));
+		tObj.getPostLoginButton().click();
+		try {
+			WebElement folderFrame = null;
+			String[] postFolderName = dataTable.getData("General_Data", "PostReportFolderName").split(";");
+			if (waitForElement(driver, By.id("acFileExplorer"), 4000)) {
+				//System.out.println("test1");
+				for (int folders = 0; folders < (postFolderName.length-1); folders++) 
+				{
+					driver.switchTo().frame(driver.findElement(By.id("acFileExplorer")));
+					folderFrame = driver.findElement(By.xpath("//frame[@name='main']"));
+					driver.switchTo().frame(folderFrame);
+					
+					String dynaXpathFolder1 = "//a[contains(@href,'" + postFolderName[folders] + "')]";
+					
+					//if (waitForElement(driver, By.linkText(postFolderName[folders]), 1000)) 
+					if (waitForElement(driver, By.xpath(dynaXpathFolder1), 1000)) 
+					{
+						driver.findElement(By.linkText(postFolderName[folders])).click();
+						driver.switchTo().defaultContent();
+					} 
+					else 
+					{
+						report.updateTestLog("Post Report Folder Navigation", "Post Report Folder Navigation" + folderFrame + "Has failed", Status.FAIL);
+					}
+				}
+				
+				driver.switchTo().frame(driver.findElement(By.id("acFileExplorer")));
+				folderFrame = driver.findElement(By.xpath("//frame[@name='main']"));
+				driver.switchTo().frame(folderFrame);
+				String postReportName = dataTable.getData("General_Data", "PostReportName");
+				
+				//System.out.println("Post report name : " +postReportName);
+				
+				if (waitForElement(driver, By.linkText(postReportName), 1000)) 
+				{
+					driver.findElement(By.linkText(postReportName)).click();
+					driver.switchTo().defaultContent();
+					driver.switchTo().frame(driver.findElement(By.id("acFileExplorer")));
+					folderFrame = driver.findElement(By.xpath("//frame[@name='main']"));
+					driver.switchTo().frame(folderFrame);
+					driver.switchTo().frame(driver.findElement(By.id("toolbarframe")));
+					String no_Of_Pages = driver.findElement(By.xpath("//input[@name='editThis']/parent::td/following-sibling::td/font")).getText().trim();
+					no_Of_Pages = no_Of_Pages.substring(3, no_Of_Pages.length());
+					int no_OfPages = Integer.parseInt(no_Of_Pages);
+					driver.switchTo().defaultContent();
+					
+					HashMap<Integer, ArrayList<String>> post_Page_TableData = null;
+					ArrayList<String> column_Values_post = new ArrayList<String>();
+					ArrayList<WebElement> column_Values_Elements_post = new ArrayList<WebElement>();
+					post_Page_TableData = new HashMap<Integer, ArrayList<String>>();
+					
+					for (int i = 1; i <= no_OfPages; i++) 
+					{
+						driver.switchTo().frame(driver.findElement(By.id("acFileExplorer")));
+						folderFrame = driver.findElement(By.xpath("//frame[@name='main']"));
+						driver.switchTo().frame(folderFrame);
+						driver.switchTo().frame(driver.findElement(By.id("reportframe")));
+						
+						if(i<no_OfPages)
+							{
+								List<WebElement> no_Of_Rows = driver.findElements(By.xpath("//body[@onunload='onUnload()']/div/div/div"));
+								String dynaXpath;
+								
+								for (int j = 2; j <= no_Of_Rows.size(); j++) 
+								{
+									if(j== (no_Of_Rows.size()-3))
+									{
+										post_Page_TableData.put(j, null);
+									}
+									else
+									{
+									dynaXpath = "(//body[@onunload='onUnload()']/div/div/div)[" + j + "]//nobr";
+									
+									column_Values_Elements_post = (ArrayList<WebElement>) driver.findElements(By.xpath(dynaXpath));
+									if (column_Values_Elements_post.size() > 0) 
+									{
+										for (int k = 0; k < column_Values_Elements_post.size(); k++) 
+										{
+											column_Values_post.add(k, column_Values_Elements_post.get(k).getText());
+										}
+									}
+
+									post_Page_TableData.put(j, column_Values_post);
+											}
+									
+									
+								}
+								System.out.println("Value of post page Table data is :" +post_Page_TableData);
+								
+								post_Pages_Data.put(i, post_Page_TableData);
+								driver.switchTo().defaultContent();
+								driver.switchTo().frame(driver.findElement(By.id("acFileExplorer")));
+								folderFrame = driver.findElement(By.xpath("//frame[@name='main']"));
+								driver.switchTo().frame(folderFrame);
+								driver.switchTo().frame(driver.findElement(By.id("toolbarframe")));
+								
+								driver.findElement(By.linkText("Next")).click();
+								driver.switchTo().defaultContent();
+								waitForElement(driver, By.id("acFileExplorer"), 2000);
+								
+								flagPostPg =0;
+								
+								//Postpages.add(postPage);
+							}
+						if(i==no_OfPages)
+						{
+						List<WebElement> no_Of_Rows = driver.findElements(By.xpath("//body[@onunload='onUnload()']/div/div/div"));
+						String dynaXpath;
+						
+						//ArrayList<String> column_Values=new ArrayList<>();
+				
+						for (int j = 2; j <= no_Of_Rows.size()-1; j++) 
+						{
+							dynaXpath = "//body[@onunload='onUnload()']/div/div/div[" + j + "]/*/nobr";
+						
+							 column_Values_Elements_post = (ArrayList<WebElement>) driver.findElements(By.xpath(dynaXpath));
+							if (column_Values_Elements_post.size() > 0) 
+							{
+								for (int k = 0; k < column_Values_Elements_post.size(); k++) 
+								{
+									column_Values_post.add(k, column_Values_Elements_post.get(k).getText());
+								}
+							}
+
+							post_Page_TableData.put(j, column_Values_post);
+							//column_Values.clear();
+							
+						}
+						post_Pages_Data.put(i, post_Page_TableData);
+						//System.out.println("Past Pages data is : " +post_Pages_Data);
+						// post_Page_TableData.clear();
+						flagPostPg = 1;
+						if(flagPostPg==0)
+							report.updateTestLog("Post Report "+postReportName, "Data is not been stored from Page No" +i, Status.FAIL);
+						if( i<=3||i>no_OfPages-3){
+							report.updateTestLog("Post Report "+postReportName, "Page No" +i, Status.PASS);
+							//System.out.println("Post Page data for page number: "+i+ "  is : " +post_Pages_Data.get(i));
+						}
+					//	postPage.add(strHeaderVal);
+						
+						driver.switchTo().defaultContent();
+						driver.switchTo().frame(driver.findElement(By.id("acFileExplorer")));
+						folderFrame = driver.findElement(By.xpath("//frame[@name='main']"));
+						driver.switchTo().frame(folderFrame);
+						driver.switchTo().frame(driver.findElement(By.id("toolbarframe")));
+						
+						driver.findElement(By.linkText("Next")).click();
+						driver.switchTo().defaultContent();
+						waitForElement(driver, By.id("acFileExplorer"), 2000);
+						
+						flagPostPg =0;
+						
+					}
+				}
+					//Postpages.add(postPage);
+					
+					report.updateTestLog("Storing Data", "Data has been stored for Pre report", Status.PASS);
+					
+					//compareHeaders();
+					
+					System.out.println("Pre Data is :" +pre_reportData);
+					System.out.println("Post Data is : " +post_Pages_Data);
+					
+					comparePreandPost(pre_reportData, post_Pages_Data);
+				} 
+				else 
+				{
+					report.updateTestLog("Post Report Navigation", "Not able to find Report Folder", Status.FAIL);
+				}
+			} 
+			else 
+			{
+				report.updateTestLog("Post Report Folder Navigation", "Not able to find Post Report Folder structure", Status.FAIL);
+			}
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+	}
