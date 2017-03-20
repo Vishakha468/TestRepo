@@ -48,12 +48,12 @@ CONNECTED TO WEB		: ${jdk.javadoc.visible}
 		<pathelement location=".\supportlibraries\Framework_Utilities.jar" />
 		<pathelement location=".\supportlibraries\poi-3.8-20120326.jar" />
 		<pathelement location=".\supportlibraries\jsoup-1.7.3.jar" />
-		<pathelement location="D:\Softwares\Selenium\poi-3.8-20120326.jar" />
-		<pathelement location="D:\Softwares\Selenium\poi-ooxml-3.8-20120326.jar" />
-		<pathelement location="D:\Softwares\Selenium\poi-ooxml-schemas-3.8-20120326.jar" />
+		<pathelement location=".\supportlibraries\poi-3.8-20120326.jar" />
+		<pathelement location=".\supportlibraries\poi-ooxml-3.8-20120326.jar" />
+		<pathelement location=".\supportlibraries\poi-ooxml-schemas-3.8-20120326.jar" />
 		<pathelement location=".\supportlibraries\qmetry.webservice.integration-v1.0.jar" />
-		<pathelement location="D:\Softwares\Selenium\xmlunit-1.2.jar" />
-		<pathelement location="D:\Softwares\Selenium\selenium-server-standalone-2.53.0.jar" />
+		<pathelement location=".\supportlibraries\xmlunit-1.2.jar" />
+		<pathelement location=".\supportlibraries\selenium-server-standalone-2.53.0.jar" />
 		<path refid="classpath.base" />
 	</path>
 	
