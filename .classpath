@@ -10,10 +10,9 @@
 	<classpathentry kind="lib" path="supportlibraries/qmetry.webservice.integration-v1.0.jar"/>
 	<classpathentry kind="lib" path="D:/Softwares/Selenium/selenium-server-standalone-2.53.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="D:/Softwares/Selenium/xmlunit-1.2.jar"/>
+	<classpathentry kind="lib" path="/Softwares/Selenium/xmlunit-1.2.jar"/>
 	<classpathentry kind="lib" path="D:/Softwares/Selenium/poi-ooxml-3.8-20120326.jar"/>
 	<classpathentry kind="lib" path="D:/Softwares/Selenium/poi-ooxml-schemas-3.8-20120326.jar"/>
 	<classpathentry kind="lib" path="D:/Softwares/Selenium/xmlbeans-2.3.0.jar"/>
-	<classpathentry kind="lib" path="D:/Softwares/Selenium/dom4j-1.6.1.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>
