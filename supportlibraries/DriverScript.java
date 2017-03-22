@@ -162,11 +162,14 @@ public class DriverScript {
 			runTimeDatatablePath = reportPath + Util.getFileSeparator() + "Datatables";
 			
 			File runTimeDatatable = new File(runTimeDatatablePath + Util.getFileSeparator() + testParameters.getCurrentScenario() + ".xls");
-			if (!runTimeDatatable.exists()) {
+			if (!runTimeDatatable.exists())
+			{
 				File datatable = new File(datatablePath + Util.getFileSeparator() + testParameters.getCurrentScenario() + ".xls");
-				try {
+				try 
+				{
 					FileUtils.copyFile(datatable, runTimeDatatable);
-				} catch (IOException e) {
+				} catch (IOException e) 
+				{
 					e.printStackTrace();
 					throw new FrameworkException("Error in creating run-time datatable: Copying the datatable failed...");
 				}
@@ -183,7 +186,8 @@ public class DriverScript {
 					throw new FrameworkException("Error in creating run-time datatable: Copying the common datatable failed...");
 				}
 			}
-		} else {
+		} else 
+		{
 			runTimeDatatablePath = datatablePath;
 		}
 		dataTable = new CraftDataTable(runTimeDatatablePath, testParameters.getCurrentScenario());

@@ -1,0 +1,60 @@
+Starting ChromeDriver 2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed) on port 4625
+Only local connections are allowed.
+java.io.FileNotFoundException: Source 'D:\GitProjectForTest\Datatables\Common Testdata.xls' does not exist
+	at org.apache.commons.io.FileUtils.copyFile(FileUtils.java:1074)
+	at org.apache.commons.io.FileUtils.copyFile(FileUtils.java:1038)
+	at supportlibraries.DriverScript.initializeDatatable(DriverScript.java:180)
+	at supportlibraries.DriverScript.driveTestExecution(DriverScript.java:83)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at allocator.ParallelRunner.invokeTestScript(ParallelRunner.java:102)
+	at allocator.ParallelRunner.run(ParallelRunner.java:50)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at allocator.ParallelRunner.invokeTestScript(ParallelRunner.java:102)
+	at allocator.ParallelRunner.run(ParallelRunner.java:50)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: com.cognizant.framework.FrameworkException: Error in creating run-time datatable: Copying the common datatable failed...
+	at supportlibraries.DriverScript.initializeDatatable(DriverScript.java:183)
+	at supportlibraries.DriverScript.driveTestExecution(DriverScript.java:83)
+	... 9 more
+Starting ChromeDriver 2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed) on port 21995
+Only local connections are allowed.
+java.io.FileNotFoundException: Source 'D:\GitProjectForTest\Datatables\Common Testdata.xls' does not exist
+	at org.apache.commons.io.FileUtils.copyFile(FileUtils.java:1074)
+	at org.apache.commons.io.FileUtils.copyFile(FileUtils.java:1038)
+	at supportlibraries.DriverScript.initializeDatatable(DriverScript.java:180)
+	at supportlibraries.DriverScript.driveTestExecution(DriverScript.java:83)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at allocator.ParallelRunner.invokeTestScript(ParallelRunner.java:102)
+	at allocator.ParallelRunner.run(ParallelRunner.java:50)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at allocator.ParallelRunner.invokeTestScript(ParallelRunner.java:102)
+	at allocator.ParallelRunner.run(ParallelRunner.java:50)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: com.cognizant.framework.FrameworkException: Error in creating run-time datatable: Copying the common datatable failed...
+	at supportlibraries.DriverScript.initializeDatatable(DriverScript.java:183)
+	at supportlibraries.DriverScript.driveTestExecution(DriverScript.java:83)
+	... 9 more
