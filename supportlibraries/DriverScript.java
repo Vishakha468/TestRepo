@@ -417,19 +417,24 @@ public class DriverScript {
 	/**
 	 * Function to do required teardown activities at the end of the test execution
 	 */
-	protected void tearDown() {
-		driver.quit();
+	protected void tearDown() 
+	{
+		//driver.quit();
+		driver.close();
 	}
 	
-	private void wrapUp() {
+	private void wrapUp() 
+	{
 		endTime = Util.getCurrentTime();
 		closeTestReport();
-		if (report.getTestStatus().equalsIgnoreCase("Failed")) {
+		if (report.getTestStatus().equalsIgnoreCase("Failed")) 
+		{
 			Assert.fail(report.getFailureDescription());
 		}
 	}
 	
-	private void closeTestReport() {
+	private void closeTestReport() 
+	{
 		String executionTime = Util.getTimeDifference(startTime, endTime);
 		report.addTestLogFooter(executionTime);
 	}
